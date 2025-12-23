@@ -15,7 +15,7 @@ import requests
 from predict_core import predict_flu_probability
 
 
-st.title("Flu Prediction Model by XGBoost Algorithm")
+st.title("Flu Radar")
 qp = st.experimental_get_query_params()
 
 # 抽出參數
