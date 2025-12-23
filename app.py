@@ -145,7 +145,7 @@ if all(v is not None for v in required_fields):
     )
     st.metric("Predicted probability (%)", f"{prob:.2f}")
 else:
-    st.
+    st.info("請完成必要臨床欄位輸入，即可即時顯示預測結果。")
 # =========================================
 #  5️Streamlit UI
 # =========================================
@@ -171,5 +171,5 @@ travel = yn("Recent travel?", "travel")
 medhistav = yn("Influenza antivirals in past 30 days?", "medhistav")
 pastmedchronlundis = yn("Chronic lung disease?", "pastmedchronlundis")
 
-info("請完成必要臨床欄位輸入，即可即時顯示預測結果。")
+
 
