@@ -185,8 +185,8 @@ if all(v is not None for v in required_fields):
     metric_placeholder.metric(
         "Predicted probability (%)",
         f"{prob:.2f}",
-        "based on following 20 clinical inputs"
     )
+    st.caption("Based on the following 20 clinical inputs")
 else:
     metric_placeholder.info(
         "請完成必要臨床欄位輸入，即可即時顯示預測結果。"
