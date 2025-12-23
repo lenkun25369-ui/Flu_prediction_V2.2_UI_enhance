@@ -84,8 +84,8 @@ def load_patient_data_from_fhir(token, obs_url):
 # =========================================
 # 2️⃣ 接收 token / obs_url 等（你可從 URL 或手動填）
 # =========================================
-token = st.text_input("Token", value=token_q)
-obs_url = st.text_input("Observation URL", value=obs_q)
+token = token_q
+obs_url = obs_q
 
 patient_data = {}
 if token and obs_url:
@@ -190,3 +190,11 @@ else:
     metric_placeholder.info(
         "請完成必要臨床欄位輸入，即可即時顯示預測結果。"
     )
+    # =========================================
+# 6️⃣ Token & Observation URL（放最下面）
+# =========================================
+
+st.divider()
+
+token = st.text_input("Token", value=token)
+obs_url = st.text_input("Observation URL", value=obs_url)
