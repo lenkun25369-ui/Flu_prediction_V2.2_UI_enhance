@@ -128,27 +128,37 @@ def yn(label, key):
 # =========================================
 # 4️⃣ Streamlit UI
 # =========================================
-temp = num_input("Temperature (°C)", 30.0, 42.0, 37.3, 1.0, "temp")
-height = num_input("HEIGHT (CM)", 1.0, 400.0, 160.0, 0.5, "height")
-weight = num_input("WEIGHT (KG)", 1.0, 400.0, 60.0, 0.5, "weight")
-DOI = num_input("Days of illness", 1, 14, 1, 1, "DOI")
-WOS = num_input("Week of year", 1, 53, 1, 1, "WOS")
-season = num_input("Season (1–4)", 1, 4, 1, 1, "season")
-rr = num_input("Respiratory rate", 10, 30, 12, 1, "rr")
-sbp = num_input("Systolic BP", 50, 250, 90, 1, "sbp")
-o2s = num_input("Oxygen saturation (%)", 1, 100, 100, 1, "o2s")
-pulse = num_input("Pulse", 50, 180, 100, 1, "pulse")
 
-fluvaccine = yn("Influenza vaccine this year?", "fluvaccine")
-cough = yn("New or increased cough?", "cough")
-coughsputum = yn("Cough with sputum?", "coughsputum")
-sorethroat = yn("Sore throat?", "sorethroat")
-rhinorrhea = yn("Rhinorrhea / nasal congestion?", "rhinorrhea")
-sinuspain = yn("Sinus pain?", "sinuspain")
-exposehuman = yn("Exposure to confirmed influenza?", "exposehuman")
-travel = yn("Recent travel?", "travel")
-medhistav = yn("Influenza antivirals in past 30 days?", "medhistav")
-pastmedchronlundis = yn("Chronic lung disease?", "pastmedchronlundis")
+left_col, right_col = st.columns(2)
+
+with left_col:
+    st.subheader("Vitals & Timing")
+
+    temp = num_input("Temperature (°C)", 30.0, 42.0, 37.3, 1.0, "temp")
+    height = num_input("HEIGHT (CM)", 1.0, 400.0, 160.0, 0.5, "height")
+    weight = num_input("WEIGHT (KG)", 1.0, 400.0, 60.0, 0.5, "weight")
+    DOI = num_input("Days of illness", 1, 14, 1, 1, "DOI")
+    WOS = num_input("Week of year", 1, 53, 1, 1, "WOS")
+    season = num_input("Season (1–4)", 1, 4, 1, 1, "season")
+    rr = num_input("Respiratory rate", 10, 30, 12, 1, "rr")
+    sbp = num_input("Systolic BP", 50, 250, 90, 1, "sbp")
+    o2s = num_input("Oxygen saturation (%)", 1, 100, 100, 1, "o2s")
+    pulse = num_input("Pulse", 50, 180, 100, 1, "pulse")
+
+with right_col:
+    st.subheader("Symptoms & History")
+
+    fluvaccine = yn("Influenza vaccine this year?", "fluvaccine")
+    cough = yn("New or increased cough?", "cough")
+    coughsputum = yn("Cough with sputum?", "coughsputum")
+    sorethroat = yn("Sore throat?", "sorethroat")
+    rhinorrhea = yn("Rhinorrhea / nasal congestion?", "rhinorrhea")
+    sinuspain = yn("Sinus pain?", "sinuspain")
+    exposehuman = yn("Exposure to confirmed influenza?", "exposehuman")
+    travel = yn("Recent travel?", "travel")
+    medhistav = yn("Influenza antivirals in past 30 days?", "medhistav")
+    pastmedchronlundis = yn("Chronic lung disease?", "pastmedchronlundis")
+
 
 # =========================================
 # 5️⃣ Prediction
