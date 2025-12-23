@@ -16,6 +16,9 @@ from predict_core import predict_flu_probability
 
 
 st.title("Flu Radar")
+# ⭐️ 預留一個「最上方」的 metric 位置
+metric_placeholder = st.empty()
+
 qp = st.experimental_get_query_params()
 
 # 抽出參數
@@ -121,33 +124,9 @@ def yn(label, key):
     elif isinstance(v, str):
         idx = options.index(v)
     return st.selectbox(label, options, index=idx, key=key)
-# ========================================
-# 4️ Prediction
-# ========================================
 
-
-# 判斷「欄位是否齊全」而不是「是否有 Token」
-required_fields = [
-    temp, height, weight, DOI, WOS, season,
-    rr, sbp, o2s, pulse,
-    fluvaccine, cough, coughsputum, sorethroat,
-    rhinorrhea, sinuspain, exposehuman, travel,
-    medhistav, pastmedchronlundis
-]
-
-if all(v is not None for v in required_fields):
-    prob = predict_flu_probability(
-        temp, height, weight, DOI, WOS, season,
-        rr, sbp, o2s, pulse,
-        fluvaccine, cough, coughsputum, sorethroat,
-        rhinorrhea, sinuspain, exposehuman, travel,
-        medhistav, pastmedchronlundis
-    )
-    st.metric("Predicted probability (%)", f"{prob:.2f}")
-else:
-    st.info("請完成必要臨床欄位輸入，即可即時顯示預測結果。")
 # =========================================
-#  5️Streamlit UI
+# 4️⃣ Streamlit UI
 # =========================================
 temp = num_input("Temperature (°C)", 30.0, 42.0, 37.3, 1.0, "temp")
 height = num_input("HEIGHT (CM)", 1.0, 400.0, 160.0, 0.5, "height")
@@ -171,5 +150,33 @@ travel = yn("Recent travel?", "travel")
 medhistav = yn("Influenza antivirals in past 30 days?", "medhistav")
 pastmedchronlundis = yn("Chronic lung disease?", "pastmedchronlundis")
 
+# =========================================
+# 5️⃣ Prediction
+# =========================================
 
+required_fields = [
+    temp, height, weight, DOI, WOS, season,
+    rr, sbp, o2s, pulse,
+    fluvaccine, cough, coughsputum, sorethroat,
+    rhinorrhea, sinuspain, exposehuman, travel,
+    medhistav, pastmedchronlundis
+]
 
+if all(v is not None for v in required_fields):
+    prob = predict_flu_probability(
+        temp, height, weight, DOI, WOS, season,
+        rr, sbp, o2s, pulse,
+        fluvaccine, cough, coughsputum, sorethroat,
+        rhinorrhea, sinuspain, exposehuman, travel,
+        medhistav, pastmedchronlundis
+    )
+
+    # ⭐️ 顯示在最上方
+    metric_placeholder.metric(
+        "Predicted probability (%)",
+        f"{prob:.2f}"
+    )
+else:
+    metric_placeholder.info(
+        "請完成必要臨床欄位輸入，即可即時顯示預測結果。"
+    )
