@@ -17,6 +17,7 @@ from predict_core import predict_flu_probability
 
 st.title("Flu Radar")
 # ⭐️ 預留一個「最上方」的 metric 位置
+st.caption("Based on the 20 clinical inputs")
 metric_placeholder = st.empty()
 
 qp = st.experimental_get_query_params()
@@ -186,7 +187,7 @@ if all(v is not None for v in required_fields):
         "Predicted probability (%)",
         f"{prob:.2f}"
     )
-    st.caption("Based on the following 20 clinical inputs")
+    
 else:
     metric_placeholder.info(
         "請完成必要臨床欄位輸入，即可即時顯示預測結果。"
