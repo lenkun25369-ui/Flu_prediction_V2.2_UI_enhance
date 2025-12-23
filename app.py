@@ -184,7 +184,7 @@ if all(v is not None for v in required_fields):
     # ⭐️ 顯示在最上方
     metric_placeholder.metric(
         "Predicted probability (%)",
-        f"{prob:.2f}",
+        f"{prob:.2f}"
     )
     st.caption("Based on the following 20 clinical inputs")
 else:
