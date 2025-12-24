@@ -1,4 +1,5 @@
 import streamlit as st
+import streamlit.components.v1 as components
 st.markdown(
     """
     <style>
@@ -195,57 +196,46 @@ if all(v is not None for v in required_fields):
         risk_label = "HIGH RISK"
         risk_color = "#e74c3c"
     
-    metric_placeholder.markdown(
-    f"""
-    <style>
-    .radar-container {{
-        display: flex;
-        align-items: center;
-        gap: 40px;
-        margin-top: 12px;
-    }}
+    with metric_placeholder.container():
+        pie_col, value_col = st.columns([1, 2], gap="large")
     
-    .pie {{
-        width: 120px;
-        height: 120px;
-        border-radius: 50%;
-        background: conic-gradient(
-            {risk_color} {risk_pct}%,
-            #2c2c2c {risk_pct}% 100%
-        );
-    }}
+        # --------------------
+        # 左：圓餅圖（只畫圖）
+        # --------------------
+        with pie_col:
+            components.html(
+                f"""
+                <style>
+                .pie {{
+                    width: 120px;
+                    height: 120px;
+                    border-radius: 50%;
+                    background: conic-gradient(
+                        {risk_color} {risk_pct}%,
+                        #2c2c2c {risk_pct}% 100%
+                    );
+                }}
+                </style>
+                <div class="pie"></div>
+                """,
+                height=140,
+            )
     
-    .risk-block {{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }}
-    
-    .risk-value {{
-        font-size: 42px;
-        font-weight: 800;
-    }}
-    
-    .risk-text {{
-        margin-top: 6px;
-        color: {risk_color};
-        font-size: 20px;
-        font-weight: 700;
-    }}
-    </style>
-    
-    <div class="radar-container">
-        <div class="pie"></div>
-    
-        <div class="risk-block">
-        <div class="risk-value">{risk_pct}%</div>
-        <div class="risk-text">{risk_label}</div>
-        </div>
-    </div>
-    """,
-    unsafe_allow_html=True
-    )
-
+        # --------------------
+        # 右：數值與風險（原生 Streamlit）
+        # --------------------
+        with value_col:
+            st.markdown(
+                f"""
+                <div style="font-size:42px;font-weight:800;">
+                    {risk_pct}%
+                </div>
+                <div style="font-size:20px;font-weight:700;color:{risk_color};">
+                    {risk_label}
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
 
 
     
