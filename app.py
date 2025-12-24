@@ -96,7 +96,7 @@ if token and obs_url:
     # =========================================
     # 2a️⃣ 顯示 FHIR 原始資料 / patient_data (可收折)
     # =========================================
-    with st.expander("查看抓到的病患資料（點擊展開）", expanded=False):
+    with st.expander("Patient data（click to expand）", expanded=False):
         st.json(patient_data)
 
     # =========================================
