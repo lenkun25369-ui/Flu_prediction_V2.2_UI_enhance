@@ -240,7 +240,6 @@ if all(v is not None for v in required_fields):
         <div class="risk-block">
         <div class="risk-value">{risk_pct}%</div>
         <div class="risk-text">{risk_label}</div>
-        <div style="opacity:0.7;font-size:14px;"></div>
         </div>
     </div>
     """,
