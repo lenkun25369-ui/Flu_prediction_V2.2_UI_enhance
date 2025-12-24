@@ -248,7 +248,7 @@ if all(v is not None for v in required_fields):
     """,
     unsafe_allow_html=True
     )
-    )
+    
 
 
     
