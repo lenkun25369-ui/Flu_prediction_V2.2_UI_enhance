@@ -196,60 +196,58 @@ if all(v is not None for v in required_fields):
         risk_color = "#e74c3c"
     
     metric_placeholder.markdown(
-        f"""
-        <style>
-        .radar-container {{
-            display: flex;
-            align-items: center;
-            gap: 40px;
-            margin-top: 12px;
-        }}
+    f"""
+    <style>
+    .radar-container {{
+        display: flex;
+        align-items: center;
+        gap: 40px;
+        margin-top: 12px;
+    }}
     
-        .pie {{
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: conic-gradient(
-                {risk_color} {risk_pct}%,
-                #2c2c2c {risk_pct}% 100%
-            );
-        }}
+    .pie {{
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: conic-gradient(
+            {risk_color} {risk_pct}%,
+            #2c2c2c {risk_pct}% 100%
+        );
+    }}
     
-        .risk-block {{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }}
+    .risk-block {{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }}
     
-        .risk-value {{
-            font-size: 42px;
-            font-weight: 800;
-            line-height: 1;
-        }}
+    .risk-value {{
+        font-size: 42px;
+        font-weight: 800;
+    }}
     
-        .risk-text {{
-            margin-top: 6px;
-            color: {risk_color};
-            font-size: 20px;
-            font-weight: 700;
-        }}
-        </style>
+    .risk-text {{
+        margin-top: 6px;
+        color: {risk_color};
+        font-size: 20px;
+        font-weight: 700;
+    }}
+    </style>
     
-        <div class="radar-container">
-        
-            <div class="pie"></div>
+    <div class="radar-container">
+        <div class="pie"></div>
     
-          
-            <div class="risk-block">
-                <div class="risk-value">{risk_pct}%</div>
-                <div class="risk-text">{risk_label}</div>
-                <div style="opacity:0.7;font-size:14px;">
-                    Radar summary from 20 inputs
-                </div>
+        <div class="risk-block">
+            <div class="risk-value">{risk_pct}%</div>
+            <div class="risk-text">{risk_label}</div>
+            <div style="opacity:0.7;font-size:14px;">
+                Radar summary from 20 inputs
             </div>
         </div>
-        """,
-        unsafe_allow_html=True
+    </div>
+    """,
+    unsafe_allow_html=True
+    )
     )
 
 
