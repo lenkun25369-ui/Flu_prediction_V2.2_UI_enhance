@@ -236,10 +236,10 @@ if all(v is not None for v in required_fields):
         </style>
     
         <div class="radar-container">
-            <!-- 左：圓餅 -->
+        
             <div class="pie"></div>
     
-            <!-- 右：數字與風險 -->
+          
             <div class="risk-block">
                 <div class="risk-value">{risk_pct}%</div>
                 <div class="risk-text">{risk_label}</div>
