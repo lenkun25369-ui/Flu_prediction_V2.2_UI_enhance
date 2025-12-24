@@ -230,7 +230,7 @@ if all(v is not None for v in required_fields):
         with value_col:
             st.markdown(
                 f"""
-                <div style="text-align:center;">
+                <div style="text-align:center; margin-top:16px;">
                     <div style="font-size:42px;font-weight:800;">
                         {risk_pct:.2f}%
                     </div>
