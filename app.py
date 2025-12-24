@@ -132,10 +132,11 @@ def yn(label, key):
 left_col, right_col = st.columns(2)
 
 with left_col:
-    st.subheader("Vitals & Timing")
+    
     if token and obs_url:
         with st.expander("Patient data（click to expand）", expanded=False):
             st.json(patient_data)
+    st.subheader("Vitals & Timing")        
     temp = num_input("Temperature (°C)", 30.0, 42.0, 37.3, 1.0, "temp")
     height = num_input("HEIGHT (CM)", 1.0, 400.0, 160.0, 0.5, "height")
     weight = num_input("WEIGHT (KG)", 1.0, 400.0, 60.0, 0.5, "weight")
@@ -148,6 +149,11 @@ with left_col:
     pulse = num_input("Pulse", 50, 180, 100, 1, "pulse")
 
 with right_col:
+    if token and obs_url:
+        st.markdown(
+            "<div style='height:48px'></div>",
+            unsafe_allow_html=True
+        )
     st.subheader("Symptoms & History")
 
     fluvaccine = yn("Influenza vaccine this year?", "fluvaccine")
