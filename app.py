@@ -216,10 +216,13 @@ if all(v is not None for v in required_fields):
                     );
                 }}
                 </style>
-                <div class="pie"></div>
+                <div style="display:flex; justify-content:center;">
+                    <div class="pie"></div>
+                </div>
                 """,
                 height=140,
             )
+
     
         # --------------------
         # 右：數值與風險（原生 Streamlit）
@@ -227,16 +230,17 @@ if all(v is not None for v in required_fields):
         with value_col:
             st.markdown(
                 f"""
-                <div style="font-size:42px;font-weight:800;">
-                    {risk_pct:.2f}%
-                </div>
-                <div style="font-size:20px;font-weight:700;color:{risk_color};">
-                    {risk_label}
+                <div style="text-align:center;">
+                    <div style="font-size:42px;font-weight:800;">
+                        {risk_pct:.2f}%
+                    </div>
+                    <div style="font-size:20px;font-weight:700;color:{risk_color};">
+                        {risk_label}
+                    </div>
                 </div>
                 """,
                 unsafe_allow_html=True,
             )
-
 
     
 else:
