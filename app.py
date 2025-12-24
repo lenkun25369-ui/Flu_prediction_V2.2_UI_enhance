@@ -183,10 +183,82 @@ if all(v is not None for v in required_fields):
     )
 
     # ⭐️ 顯示在最上方
-    metric_placeholder.metric(
-        "Predicted probability (%)",
-        f"{prob:.2f}"
+    risk_pct = round(prob, 1)
+    
+    if risk_pct < 20:
+        risk_label = "LOW RISK"
+        risk_color = "#2ecc71"
+    elif risk_pct < 40:
+        risk_label = "MODERATE RISK"
+        risk_color = "#f39c12"
+    else:
+        risk_label = "HIGH RISK"
+        risk_color = "#e74c3c"
+    
+    metric_placeholder.markdown(
+        f"""
+        <style>
+        .radar-container {{
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            margin-top: 10px;
+        }}
+    
+        .circle {{
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background:
+                conic-gradient(
+                    {risk_color} {risk_pct}%,
+                    #2c2c2c {risk_pct}% 100%
+                );
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }}
+    
+        .circle-inner {{
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background: #0e1117;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }}
+    
+        .circle-inner span {{
+            font-size: 28px;
+        }}
+    
+        .risk-text {{
+            color: {risk_color};
+            font-size: 20px;
+            font-weight: 700;
+        }}
+        </style>
+    
+        <div class="radar-container">
+            <div class="circle">
+                <div class="circle-inner">
+                    <span>{risk_pct}%</span>
+                </div>
+            </div>
+    
+            <div>
+                <div class="risk-text">{risk_label}</div>
+                <div style="opacity:0.7">Radar summary from 20 inputs</div>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True
     )
+
     
 else:
     metric_placeholder.info(
