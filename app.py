@@ -96,6 +96,8 @@ if token and obs_url:
     # =========================================
     # 2a️⃣ 顯示 FHIR 原始資料 / patient_data (可收折)
     # =========================================
+    with st.expander("Patient Data（Click to Expand）", expanded=False):
+        st.json(patient_data)
 
     # =========================================
     # 2b️⃣ 將抓到的值放入 session_state，強制更新 widget 預設值
@@ -133,9 +135,7 @@ left_col, right_col = st.columns(2)
 
 with left_col:
     
-    if token and obs_url:
-        with st.expander("Patient data（click to expand）", expanded=False):
-            st.json(patient_data)
+
     st.subheader("Vitals & Timing")        
     temp = num_input("Temperature (°C)", 30.0, 42.0, 37.3, 1.0, "temp")
     height = num_input("HEIGHT (CM)", 1.0, 400.0, 160.0, 0.5, "height")
@@ -149,11 +149,7 @@ with left_col:
     pulse = num_input("Pulse", 50, 180, 100, 1, "pulse")
 
 with right_col:
-    if token and obs_url:
-        st.markdown(
-            "<div style='height:48px'></div>",
-            unsafe_allow_html=True
-        )
+
     st.subheader("Symptoms & History")
 
     fluvaccine = yn("Influenza vaccine this year?", "fluvaccine")
