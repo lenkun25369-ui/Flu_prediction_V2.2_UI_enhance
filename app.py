@@ -201,42 +201,34 @@ if all(v is not None for v in required_fields):
         .radar-container {{
             display: flex;
             align-items: center;
-            gap: 32px;
-            margin-top: 10px;
+            gap: 40px;
+            margin-top: 12px;
         }}
     
-        .circle {{
-            width: 140px;
-            height: 140px;
+        .pie {{
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
-            background:
-                conic-gradient(
-                    {risk_color} {risk_pct}%,
-                    #2c2c2c {risk_pct}% 100%
-                );
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background: conic-gradient(
+                {risk_color} {risk_pct}%,
+                #2c2c2c {risk_pct}% 100%
+            );
         }}
     
-        .circle-inner {{
-            width: 110px;
-            height: 110px;
-            border-radius: 50%;
-            background: #0e1117;
+        .risk-block {{
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
-            color: white;
-            font-weight: bold;
         }}
     
-        .circle-inner span {{
-            font-size: 28px;
+        .risk-value {{
+            font-size: 42px;
+            font-weight: 800;
+            line-height: 1;
         }}
     
         .risk-text {{
+            margin-top: 6px;
             color: {risk_color};
             font-size: 20px;
             font-weight: 700;
@@ -244,20 +236,22 @@ if all(v is not None for v in required_fields):
         </style>
     
         <div class="radar-container">
-            <div class="circle">
-                <div class="circle-inner">
-                    <span>{risk_pct}%</span>
-                </div>
-            </div>
+            <!-- 左：圓餅 -->
+            <div class="pie"></div>
     
-            <div>
+            <!-- 右：數字與風險 -->
+            <div class="risk-block">
+                <div class="risk-value">{risk_pct}%</div>
                 <div class="risk-text">{risk_label}</div>
-                <div style="opacity:0.7">Radar summary from 20 inputs</div>
+                <div style="opacity:0.7;font-size:14px;">
+                    Radar summary from 20 inputs
+                </div>
             </div>
         </div>
         """,
         unsafe_allow_html=True
     )
+
 
     
 else:
