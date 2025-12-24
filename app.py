@@ -98,6 +98,7 @@ if token and obs_url:
     # =========================================
     with st.expander("Patient Data（Click to Expand）", expanded=False):
         st.json(patient_data)
+        st.divider()
 
     # =========================================
     # 2b️⃣ 將抓到的值放入 session_state，強制更新 widget 預設值
