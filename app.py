@@ -42,9 +42,9 @@ def load_patient_data_from_fhir(token, obs_url):
         # Numeric
         if text == "Temperature (°C)":
             patient_data["temp"] = c["valueQuantity"]["value"]
-        elif text == "HEIGHT (CM)":
+        elif text == "Height (CM)":
             patient_data["height"] = c["valueQuantity"]["value"]
-        elif text == "WEIGHT (KG)":
+        elif text == "Weight (KG)":
             patient_data["weight"] = c["valueQuantity"]["value"]
         elif text == "Pulse":
             patient_data["pulse"] = c["valueQuantity"]["value"]
